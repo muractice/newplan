@@ -1,0 +1,41 @@
+@startuml
+
+
+package billing{
+
+class TotalFee
+
+package contract{
+TotalFee -d-> BaseContractFee
+ContractForBilling -d-> Volume
+ContractForBilling -d-> Period2year
+ContractForBilling -u-> BaseContractFee
+
+}
+
+package discount{
+TotalFee -d-> DiscountFee
+Discount --> DiscountFeeOfFamilyNumber
+Discount --> SmartValue
+Discount --> CheeringSmartPhone
+Discount --> Start5G
+Discount -u-> DiscountFee
+}
+
+}
+
+package contractmanage{
+interface ContractRepository
+DiscountFeeOfFamilyNumber -d-> FamilyNumber
+FamilyContracts -> FamilyNumber
+ContractRepository -up-> FamilyContracts
+ContractRepository -up-> BaseContract
+ContractForBilling -d-> BaseContract
+}
+
+package plan{
+ContractForBilling --> Plan
+BaseContract --> Plan
+}
+
+@enduml
