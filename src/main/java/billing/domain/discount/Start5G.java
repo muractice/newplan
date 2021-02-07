@@ -1,7 +1,6 @@
 package billing.domain.discount;
 
 import contract.domain.SmartPhoneType;
-import fundametals.Fee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +12,7 @@ public enum Start5G {
     @Getter
     private final DiscountFee discountFee;
 
-    public static Start5G convert(SmartPhoneType smartPhoneType){
+    public static Start5G from(SmartPhoneType smartPhoneType){
         return (smartPhoneType == SmartPhoneType.FIVE_G)
                 ? Start5G.APPLIED : Start5G.NOT_APPLIED;
     }

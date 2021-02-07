@@ -11,44 +11,34 @@ DataMax5GPLan
 }
 
 TotalFee -d-> ContractFee
-ContractForCharge -d-> Period2year
 ContractForCharge -u-> ContractFee
 
 }
 
 package discount{
 TotalFee -d-> DiscountFee
-DiscountService --> FamilyNumberForDiscount
-DiscountService --> SmartValue
 DiscountService -u-> DiscountFee
 DiscountService -d-> ContractForDiscount
-ContractForDiscount -d-> CheeringSmartPhone
-ContractForDiscount -d-> VolumeForDiscount
-ContractForDiscount -d-> Start5G
 }
 
 }
 
 package contractmanage{
 interface ContractRepository
-FamilyNumberForDiscount -d-> FamilyNumber
-FamilyContracts -> FamilyNumber
 ContractRepository -up-> FamilyContracts
 ContractRepository -up-> Contract
 ContractForCharge -d-> Contract
 ContractForDiscount -d-> Contract
-DiscountService -l-> FamilyContracts
+DiscountService -d-> FamilyContracts
 }
 
 package otherservice{
-SmartValue -r-> SmartValueTargetServiceContracts
-DiscountService -r-> SmartValueTargetServiceContracts
+DiscountService -l-> SmartValueTargetServiceContracts
 }
 
 package plan{
 Contract -d-> Plan
 ContractForCharge -d-> Plan
-CheeringSmartPhone -d- Plan
 }
 
 @enduml

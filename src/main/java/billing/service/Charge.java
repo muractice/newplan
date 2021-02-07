@@ -2,10 +2,9 @@ package billing.service;
 
 import billing.domain.charge.ContractForCharge;
 import billing.domain.discount.ContractForDiscount;
-import billing.domain.discount.DiscountTotalFee;
 import contract.domain.Contract;
 import contract.domain.ContractRepository;
-import billing.domain.discount.Discount;
+import billing.domain.discount.DiscountService;
 import billing.domain.TotalFee;
 import billing.domain.otherservice.SmartValueTargetServiceContractRepository;
 import billing.domain.otherservice.SmartValueTargetServiceContracts;
@@ -25,9 +24,9 @@ public class Charge {
         FamilyContracts familyContracts = contractRepository.findFamilyContractsByUserId(userId);
         SmartValueTargetServiceContracts smartValueTargetServiceContracts
                 = smartValueTargetServiceContractRepository.findByUserID(userId);
-        Discount discount = Discount.from(familyContracts,smartValueTargetServiceContracts,contractForDiscount);
+        DiscountService discountService = DiscountService.from(smartValueTargetServiceContracts,familyContracts,contractForDiscount);
 
-        return TotalFee.from(contractForCharge.calculateFee(),discount.calculate());
+        return TotalFee.from(contractForCharge.calculateFee(), discountService.calculate());
     }
 
 }

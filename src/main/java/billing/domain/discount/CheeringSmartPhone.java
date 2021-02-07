@@ -2,20 +2,23 @@ package billing.domain.discount;
 
 import contract.domain.DataMax5GPlan;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 public enum CheeringSmartPhone {
-    WITH_AMAZON_PRIME(DiscountFee.form(1400)),
-    WITH_NETFLIX(DiscountFee.form(1400)),
-    WITH_ALL_STAR(DiscountFee.form(1500));
+    //      追加した時に何か対応しないとエラーになるようにした方がいいか？？
+    //      例えばCheeringSmartPhoneもプランごとに列挙するとか
 
+    TYPE_1400(DiscountFee.form(1400)),
+    TYPE_1500(DiscountFee.form(1500));
+
+    @Getter
     private final DiscountFee discountFee;
 
     public static CheeringSmartPhone convert(DataMax5GPlan dataMax5GPlan){
         switch (dataMax5GPlan){
-            case WITH_AMAZON_PRIME: return WITH_AMAZON_PRIME;
-            case WITH_NETFLIX:return WITH_NETFLIX;
-            default:return WITH_ALL_STAR;
+            case WITH_ALL_STAR: return TYPE_1500;
+            default:return TYPE_1400;
         }
     }
 }

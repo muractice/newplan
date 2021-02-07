@@ -1,8 +1,6 @@
 package billing.domain.discount;
 
 import contract.domain.FamilyContracts;
-import contract.domain.FamllyNumber;
-import fundametals.Fee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,7 +14,7 @@ public enum FamilyNumberForDiscount {
     @Getter
     private final DiscountFee discountFee;
 
-    public static FamilyNumberForDiscount convert(FamilyContracts familyContracts){
+    public static FamilyNumberForDiscount from(FamilyContracts familyContracts){
         switch(familyContracts.getFamilyNumber().getValue()) {
             case 2: return FamilyNumberForDiscount.TWO;
             case 3: return FamilyNumberForDiscount.THREE;

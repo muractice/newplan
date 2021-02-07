@@ -5,17 +5,19 @@ import contract.domain.FamilyContracts;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class Discount {
+public class DiscountService {
     private final FamilyNumberForDiscount familyNumberForDiscount;
     private final SmartValueTarget smartValueTarget;
     private final ContractForDiscount contractForDiscount;
 
-    public static Discount from(FamilyContracts familyContracts, SmartValueTargetServiceContracts smartValueTargetServiceContracts,
-                                ContractForDiscount contractForDiscount){
-
-        return new Discount(FamilyNumberForDiscount.convert(familyContracts)
-                , SmartValueTarget.from(smartValueTargetServiceContracts)
-                ,contractForDiscount);
+    public static DiscountService from(SmartValueTargetServiceContracts smartValueTargetServiceContracts,
+                                       FamilyContracts familyContracts,
+                                       ContractForDiscount contractForDiscount){
+        return new DiscountService(
+                FamilyNumberForDiscount.from(familyContracts),
+                SmartValueTarget.from(smartValueTargetServiceContracts),
+                contractForDiscount
+        );
     }
 
     public DiscountTotalFee calculate(){

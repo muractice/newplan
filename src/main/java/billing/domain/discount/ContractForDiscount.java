@@ -8,16 +8,22 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ContractForDiscount {
     private final ContractNo contractNo;
-    private final DataMax5GPlan dataMax5GPlan;
     private final VolumeForDiscount volume;
-    private final Period2years period2years;
+    private final Period2yearsForDiscount period2YearsForDiscount;
+    private final CheeringSmartPhone cheeringSmartPhone;
     private final Start5G start5G;
 
     public static ContractForDiscount from(Contract contract){
-        return new ContractForDiscount(contract.getContractNo(), contract.getDataMax5GPlan()
-                ,contract.getVolume(),contract.getPeriod2years(),Start5G.convert(contract.getSmartPhoneType()));
+        return new ContractForDiscount(
+                contract.getContractNo(),
+                VolumeForDiscount.from(contract.getVolume()),
+                Period2yearsForDiscount.from(contract.getContractPeriod()),
+                CheeringSmartPhone.convert(contract.getDataMax5GPlan()),
+                Start5G.from(contract.getSmartPhoneType())
+        );
     }
     DiscountFee calculateDiscountFee(){
-        return volume.getDiscountFee().plus(period2years.getDiscountFee()).plus(start5G.getDiscountFee());
+        return volume.getDiscountFee().plus(period2YearsForDiscount.getDiscountFee())
+                .plus(start5G.getDiscountFee()).plus(cheeringSmartPhone.getDiscountFee());
     }
 }

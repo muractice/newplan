@@ -1,7 +1,6 @@
 package contract.domain;
 
-import billing.domain.discount.Period2years;
-import billing.domain.discount.VolumeForDiscount;
+import billing.domain.discount.Period2yearsForDiscount;
 import fundametals.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,9 +14,9 @@ public class Contract {
     @Getter
     private final DataMax5GPlan dataMax5GPlan;
     @Getter
-    private final VolumeForDiscount volume;
+    private final Volume volume;
     @Getter
-    private final Period2years period2years;
+    private final ContractPeriod contractPeriod;
     @Getter
     private final SmartPhoneType smartPhoneType;
 
