@@ -1,7 +1,6 @@
 package billing.domain.discount;
 
-import contract.domain.ContractPeriod;
-import fundametals.Fee;
+import contract.domain.ContractPeriodConstrain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +12,7 @@ public enum Period2yearsForDiscount {
     @Getter
     private final DiscountFee discountFee;
 
-    public static Period2yearsForDiscount from(ContractPeriod contractPeriod){
-        return contractPeriod == ContractPeriod.TWO_YEARS ? APPLIED : NOT_APPLIED;
+    public static Period2yearsForDiscount from(ContractPeriodConstrain contractPeriodConstrain){
+        return contractPeriodConstrain == ContractPeriodConstrain.TWO_YEARS ? APPLIED : NOT_APPLIED;
     }
 }

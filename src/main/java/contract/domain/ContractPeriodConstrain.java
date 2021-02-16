@@ -1,5 +1,5 @@
 package contract.domain;
 
-public enum ContractPeriod {
+public enum ContractPeriodConstrain {
     TWO_YEARS,NONE;
 }
